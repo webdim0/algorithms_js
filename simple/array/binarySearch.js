@@ -1,21 +1,24 @@
 export const binarySearch = (value, arr, start=null, end=null, log=false) => {        
-    if (end - start > 1 || (!start && !end)) {
-        const pivotIndex = start || end ? Math.floor(start + (end - start)/2) : Math.floor(arr.length/2);
-        const pivotValue = arr[pivotIndex];
-        if (pivotValue == value) {
-            return pivotIndex;
-        } 
-        const startIndex = pivotValue > value ? (start ? start : 0) : pivotIndex + 1;
-        const stopIndex = pivotValue > value ? pivotIndex : (end ? end + 1 : arr.length);        
-        if (log) {            
-            console.log(arr.slice(startIndex, stopIndex));
-        }
-        for (let i = startIndex; i < stopIndex; i++) {
-            if (arr[i] == pivotValue) {
-                return i;
+    if (end - start > 1 || (!start && !end)) {        
+        let pivotIndex = start || end ? Math.floor(start + (end - start)/2) : Math.floor(arr.length/2);
+        let pivotValue = arr[pivotIndex];
+        let startIndex = 0;
+        let stopIndex = 0;        
+        while (true) {                
+            if (pivotValue == value) {
+                return pivotIndex;
+            }                        
+            startIndex = pivotValue > value ? startIndex : pivotIndex;
+            stopIndex = pivotValue > value ? pivotIndex : (stopIndex ? stopIndex : arr.length);                
+            if (log) {                            
+                console.log(arr.slice(startIndex, stopIndex));
+            }
+            if (stopIndex - startIndex <= 1) {
+                return arr[startIndex] == value ? startIndex : null;
             }            
-        }        
-        return binarySearch(value, arr, startIndex, stopIndex, log);
+            pivotIndex = Math.floor(startIndex + (stopIndex - startIndex)/2);
+            pivotValue = arr[pivotIndex];            
+        }         
     } else if (end - start == 1) {
         return arr[start] == value ? start : null;
     } else {

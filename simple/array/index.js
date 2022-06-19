@@ -11,7 +11,7 @@ console.log('---');
 console.log(res);
 
 const arrSorted = res;
-const serchValue = 24;
+const serchValue = 67;
 console.log('');
 console.log('*binarySearch');
 console.log(serchValue);
