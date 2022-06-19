@@ -30,6 +30,17 @@ export const printList = (list) => {
     process.stdout.write(`null`);
 }
 
+export const toArray = (list) => {
+    const arr = [];
+    let node = list;    
+    while (node) {
+        arr.push(node.value);        
+        node = node.next;
+    }    
+    
+    return arr;
+}
+
 export const reverseList = (list) => {    
     
     let node = list;    
