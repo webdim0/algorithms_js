@@ -1,4 +1,4 @@
-import {binarySearch} from '../array/binarySearch'
+import {binarySearch} from '../binarySearch'
 
 test('binarySearch test', () => {
     const arr = [12, 24, 34, 34, 45, 56, 67, 92];
